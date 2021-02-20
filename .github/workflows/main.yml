@@ -1,0 +1,22 @@
+name: Android CI
+
+on: push
+
+jobs:
+  my-job:
+    name: My Job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Decrypt File
+        run: gpg --quiet --batch --yes --decrypt --passphrase="$SECRET_KEY_TMDB" --output secrets.properties secrets.properties.gpg
+        env:
+          SECRET_KEY_TMDB: ${{ secrets.SECRET_KEY_TMDB }}
+
+      - name: Build APK 
+        run: bash ./gradlew :app:assembleDebug
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: App
+          path: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
