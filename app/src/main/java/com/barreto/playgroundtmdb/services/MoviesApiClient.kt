@@ -11,7 +11,25 @@ interface MoviesApiClient {
     @GET("movie/popular")
     suspend fun getPopularMovies(
         @Query("api_key")
-        apiKey: String = BuildConfig.API_KEY_TMDB
+        apiKey: String = BuildConfig.API_KEY_TMDB,
+        @Query("language")
+        language: String = "pt-BR"
+    ): Response<MovieResult>
+
+    @GET("movie/top_rated")
+    suspend fun getTopRatedMovies(
+        @Query("api_key")
+        apiKey: String = BuildConfig.API_KEY_TMDB,
+        @Query("language")
+        language: String = "pt-BR"
+    ): Response<MovieResult>
+
+    @GET("movie/now_playing")
+    suspend fun getNowPlayingMovies(
+        @Query("api_key")
+        apiKey: String = BuildConfig.API_KEY_TMDB,
+        @Query("language")
+        language: String = "pt-BR"
     ): Response<MovieResult>
 
 }

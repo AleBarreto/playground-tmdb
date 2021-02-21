@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">Playground TMDB</string>
+
+    <!-- HOME -->
+    <string name="home_welcome">Hello, what do you want to watch ?</string>
+    <string name="home_search">Search</string>
+
+    <string name="random_text_1">
+        Hadoop is a data processing tool used to process large size data over distributed
+        commodity hardware. The trend of Big Data Hadoop market is on the boom and it’s
+          not showing any kind of deceleration in its growth. Today, industries are capable
+          of storing all the data generated at their business at an affordable price just
+          because of Hadoop. Hadoop helps the industry to know their customer’s behavior,
+          customers buying priorities i.e. what they loved the most, and click patterns,
+          etc. Hadoop provides personalized recommendations and personalizes ad targeting
+          features. Companies are generating thousands of petabytes of data every day so the
+          demand for Big Data professionals is very high. Even after a few years,
+          Hadoop will be considered as the must-learn skill for the data-scientist
+          and Big Data Technology. Companies are investing big in it and it will become
+          an in-demand skill in the future. Hadoop provides personalized recommendations
+        and personalizes ad targeting
+          features. Companies are generating thousands of petabytes of data every day so the
+          demand for Big Data professionals is very high. Even after a few years,
+          Hadoop will be considered as the must-learn skill for the data-scientist
+          and Big Data Technology. Companies are investing big in it and it will become
+          an in-demand skill in the future.
+    </string>
+
 </resources>
