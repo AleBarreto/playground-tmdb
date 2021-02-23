@@ -1,6 +1,7 @@
 package com.barreto.playgroundtmdb.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class MovieResult(
     val page: Long,
@@ -47,4 +48,4 @@ data class Movie(
 
     @SerializedName(value = "vote_count")
     val voteCount: Long
-)
+) : Serializable

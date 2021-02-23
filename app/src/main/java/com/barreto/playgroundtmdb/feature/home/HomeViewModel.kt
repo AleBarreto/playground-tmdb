@@ -1,4 +1,4 @@
-package com.barreto.playgroundtmdb.ui
+package com.barreto.playgroundtmdb.feature.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -10,7 +10,7 @@ import com.barreto.playgroundtmdb.repository.RepositoryContract
 import com.barreto.playgroundtmdb.services.DataResource
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val repository: RepositoryContract) : ViewModel() {
+class HomeViewModel(private val repository: RepositoryContract) : ViewModel() {
 
     private val _listDataHomeMain = MutableLiveData<List<DataSourceHomeMain>>()
     val listDataHomeMain: LiveData<List<DataSourceHomeMain>> get() = _listDataHomeMain

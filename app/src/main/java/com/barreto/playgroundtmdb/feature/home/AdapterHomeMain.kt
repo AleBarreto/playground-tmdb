@@ -1,4 +1,4 @@
-package com.barreto.playgroundtmdb.feature
+package com.barreto.playgroundtmdb.feature.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.barreto.playgroundtmdb.R
 import com.barreto.playgroundtmdb.feature.home.domain.DataSourceHomeMain
+import com.barreto.playgroundtmdb.model.Movie
 
 class AdapterHomeMain(private val listData: List<DataSourceHomeMain>) :
     RecyclerView.Adapter<AdapterHomeMain.ViewHolderMain>() {
@@ -25,7 +26,7 @@ class AdapterHomeMain(private val listData: List<DataSourceHomeMain>) :
         holder.bindView(listData[position])
     }
 
-    class ViewHolderMain(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolderMain(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         private val tvGenre: TextView = itemView.findViewById(R.id.tv_genre)
         private val recyclerView: RecyclerView = itemView.findViewById(R.id.rv_content_movie)
@@ -36,10 +37,26 @@ class AdapterHomeMain(private val listData: List<DataSourceHomeMain>) :
             recyclerView.layoutManager =
                 LinearLayoutManager(itemView.context, LinearLayoutManager.HORIZONTAL, false)
 
-            recyclerView.adapter = AdapterHomeMovie(data.movies)
+            val adapterHomeMovie = AdapterHomeMovie(data.movies)
+            adapterHomeMovie.setOnClickMovie { clickMovie(it) }
+            recyclerView.adapter = adapterHomeMovie
 
         }
 
+    }
+
+    //Click from adapter AdapterHomeMovie
+    private fun clickMovie(movie: Movie) {
+        onClick.onClickMovie(movie)
+    }
+
+    interface OnClickMovie {
+        fun onClickMovie(movie: Movie)
+    }
+
+    private lateinit var onClick: OnClickMovie
+    fun setOnClickMovie(onClick: OnClickMovie) {
+        this.onClick = onClick
     }
 
 }

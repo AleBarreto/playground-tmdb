@@ -1,4 +1,4 @@
-package com.barreto.playgroundtmdb.feature
+package com.barreto.playgroundtmdb.feature.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.barreto.playgroundtmdb.R
 import com.barreto.playgroundtmdb.model.Movie
@@ -14,6 +15,12 @@ import com.bumptech.glide.Glide
 //https://image.tmdb.org/t/p/w500/
 class AdapterHomeMovie(private val list: List<Movie>) :
     RecyclerView.Adapter<AdapterHomeMovie.ViewHolder>() {
+
+    private lateinit var itemClick: (Movie) -> Unit
+
+    fun setOnClickMovie(itemClick: (Movie) -> Unit) {
+        this.itemClick = itemClick
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -28,10 +35,11 @@ class AdapterHomeMovie(private val list: List<Movie>) :
         holder.bindView(list[position])
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvTitle: TextView = itemView.findViewById(R.id.tv_title_movie)
         private val ivMovie: ImageView = itemView.findViewById(R.id.iv_movie)
         private val ratingBar: RatingBar = itemView.findViewById(R.id.rating_bar)
+        private val containerMain: ConstraintLayout = itemView.findViewById(R.id.container_main)
         fun bindView(movie: Movie) {
             tvTitle.text = movie.title
             ratingBar.rating = getVoteAverage(movie.voteAverage)
@@ -39,6 +47,7 @@ class AdapterHomeMovie(private val list: List<Movie>) :
                 .load("https://image.tmdb.org/t/p/w300" + movie.posterPath)
                 .centerCrop()
                 .into(ivMovie)
+            containerMain.setOnClickListener { itemClick(movie) }
         }
 
         private fun getVoteAverage(double: Double): Float {

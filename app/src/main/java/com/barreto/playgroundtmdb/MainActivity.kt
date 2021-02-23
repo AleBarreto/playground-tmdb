@@ -1,5 +1,6 @@
 package com.barreto.playgroundtmdb
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -8,18 +9,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.barreto.playgroundtmdb.feature.AdapterHomeMain
+import com.barreto.playgroundtmdb.feature.detail.DetailMovieActivity
+import com.barreto.playgroundtmdb.feature.home.AdapterHomeMain
+import com.barreto.playgroundtmdb.feature.home.HomeViewModel
+import com.barreto.playgroundtmdb.model.Movie
 import com.barreto.playgroundtmdb.repository.NetworkDataSource
 import com.barreto.playgroundtmdb.services.WebApiAccess
-import com.barreto.playgroundtmdb.ui.MainViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), AdapterHomeMain.OnClickMovie {
 
-    private val viewModel by viewModels<MainViewModel> {
+    private val viewModel by viewModels<HomeViewModel> {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 val dataSource = NetworkDataSource(WebApiAccess.moviesApi)
-                return MainViewModel(dataSource) as T
+                return HomeViewModel(dataSource) as T
             }
         }
     }
@@ -34,9 +37,18 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllMovies()
 
         viewModel.listDataHomeMain.observe(this, Observer {
-            rv.adapter = AdapterHomeMain(it)
+            val adapterHomeMain = AdapterHomeMain(it)
+            adapterHomeMain.setOnClickMovie(this)
+            rv.adapter = adapterHomeMain
         })
 
+
+    }
+
+    override fun onClickMovie(movie: Movie) {
+        val intent = Intent(this, DetailMovieActivity::class.java)
+        intent.putExtra(DetailMovieActivity.EXTRA_MOVIE, movie)
+        startActivity(intent)
 
     }
 }

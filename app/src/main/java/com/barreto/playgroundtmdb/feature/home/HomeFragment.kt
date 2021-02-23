@@ -1,4 +1,4 @@
-package com.barreto.playgroundtmdb.feature
+package com.barreto.playgroundtmdb.feature.home
 
 import androidx.fragment.app.Fragment
 import com.barreto.playgroundtmdb.R
