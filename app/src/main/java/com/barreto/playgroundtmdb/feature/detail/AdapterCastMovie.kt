@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.barreto.playgroundtmdb.R
+import com.barreto.playgroundtmdb.feature.setImageUrlCircle
 import com.barreto.playgroundtmdb.model.Cast
-import com.bumptech.glide.Glide
 
 class AdapterCastMovie(private val list: List<Cast>) :
     RecyclerView.Adapter<AdapterCastMovie.ViewHolder>() {
@@ -20,10 +20,7 @@ class AdapterCastMovie(private val list: List<Cast>) :
 
         fun bindView(cast: Cast) {
             tvCast.text = cast.name
-            Glide.with(itemView.context)
-                .load("https://image.tmdb.org/t/p/w200" + cast.profilePath)
-                .circleCrop()
-                .into(ivCast)
+            ivCast.setImageUrlCircle("https://image.tmdb.org/t/p/w200" + cast.profilePath)
         }
 
     }

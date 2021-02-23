@@ -5,6 +5,11 @@
     <string name="home_welcome">Hello, what do you want to watch ?</string>
     <string name="home_search">Search</string>
 
+    <!-- Detail -->
+    <string name="detail_button_watch">watch now</string>
+    <string name="detail_studio">Produtora</string>
+    <string name="detail_genre">Gênero</string>
+
     <string name="random_text_1">
         Hadoop is a data processing tool used to process large size data over distributed
         commodity hardware. The trend of Big Data Hadoop market is on the boom and it’s

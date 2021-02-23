@@ -9,8 +9,9 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.barreto.playgroundtmdb.R
+import com.barreto.playgroundtmdb.feature.setImageUrl
+import com.barreto.playgroundtmdb.feature.setVoteAverage
 import com.barreto.playgroundtmdb.model.Movie
-import com.bumptech.glide.Glide
 
 //https://image.tmdb.org/t/p/w500/
 class AdapterHomeMovie(private val list: List<Movie>) :
@@ -42,18 +43,10 @@ class AdapterHomeMovie(private val list: List<Movie>) :
         private val containerMain: ConstraintLayout = itemView.findViewById(R.id.container_main)
         fun bindView(movie: Movie) {
             tvTitle.text = movie.title
-            ratingBar.rating = getVoteAverage(movie.voteAverage)
-            Glide.with(itemView.context)
-                .load("https://image.tmdb.org/t/p/w300" + movie.posterPath)
-                .centerCrop()
-                .into(ivMovie)
+            ratingBar.setVoteAverage(movie.voteAverage)
+            ivMovie.setImageUrl("https://image.tmdb.org/t/p/w300" + movie.posterPath)
             containerMain.setOnClickListener { itemClick(movie) }
         }
-
-        private fun getVoteAverage(double: Double): Float {
-            return double.toFloat() / 2
-        }
-
     }
 
 }

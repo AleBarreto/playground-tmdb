@@ -3,6 +3,7 @@ package com.barreto.playgroundtmdb.services
 import com.barreto.playgroundtmdb.BuildConfig
 import com.barreto.playgroundtmdb.model.CreditsResult
 import com.barreto.playgroundtmdb.model.MovieResult
+import com.barreto.playgroundtmdb.model.MovieResultDetail
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -42,6 +43,16 @@ interface MoviesApiClient {
         apiKey: String = BuildConfig.API_KEY_TMDB,
         @Query("language")
         language: String = "pt-BR"
-    ) : Response<CreditsResult>
+    ): Response<CreditsResult>
+
+    @GET("movie/{id}")
+    suspend fun getMovieDetail(
+        @Path("id")
+        idMovie: Long,
+        @Query("api_key")
+        apiKey: String = BuildConfig.API_KEY_TMDB,
+        @Query("language")
+        language: String = "pt-BR"
+    ): Response<MovieResultDetail>
 
 }

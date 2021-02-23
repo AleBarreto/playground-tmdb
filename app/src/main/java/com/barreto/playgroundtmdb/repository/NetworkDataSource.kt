@@ -1,9 +1,6 @@
 package com.barreto.playgroundtmdb.repository
 
-import com.barreto.playgroundtmdb.model.Cast
-import com.barreto.playgroundtmdb.model.CreditsResult
-import com.barreto.playgroundtmdb.model.Movie
-import com.barreto.playgroundtmdb.model.MovieResult
+import com.barreto.playgroundtmdb.model.*
 import com.barreto.playgroundtmdb.services.DataResource
 import com.barreto.playgroundtmdb.services.MoviesApiClient
 import retrofit2.Response
@@ -30,6 +27,15 @@ class NetworkDataSource(private val webApiClient: MoviesApiClient) : RepositoryC
     override suspend fun getCreditsByMovieId(id: Long): DataResource<List<Cast>> {
         val credits = webApiClient.getCreditsByMovieId(id)
         return prepareData(credits) as DataResource<List<Cast>>
+    }
+
+    override suspend fun getMovieDetail(id: Long): DataResource<MovieResultDetail> {
+        val response = webApiClient.getMovieDetail(id)
+        return if (response.isSuccessful && response.body() != null) {
+            DataResource.Success(response.body()!!)
+        } else {
+            DataResource.Error("", response.body())
+        }
     }
 
     private fun prepareData(

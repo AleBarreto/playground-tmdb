@@ -18,6 +18,8 @@
     <color name="app_home_starts">#f7d306</color>
     <color name="app_home_starts_second">#57573a</color>
 
+    <color name="app_detail_text">#b1b6bb</color>
+
 
     <color name="app_second">#2c3848</color>
     <color name="app_second_light">#6b737f</color>

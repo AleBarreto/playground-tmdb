@@ -2,6 +2,8 @@ package com.barreto.playgroundtmdb.feature.detail
 
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.RatingBar
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -10,11 +12,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.barreto.playgroundtmdb.R
+import com.barreto.playgroundtmdb.feature.setImageUrl
+import com.barreto.playgroundtmdb.feature.setVoteAverage
+
 import com.barreto.playgroundtmdb.model.Movie
 import com.barreto.playgroundtmdb.repository.NetworkDataSource
 import com.barreto.playgroundtmdb.services.WebApiAccess
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 
 class DetailMovieActivity : AppCompatActivity() {
 
@@ -38,19 +41,35 @@ class DetailMovieActivity : AppCompatActivity() {
 
         val imageView: ImageView = findViewById(R.id.backdrop)
         val rvList: RecyclerView = findViewById(R.id.rv_credits)
+        val tvTitle: TextView = findViewById(R.id.tv_title)
+        val tvStudio: TextView = findViewById(R.id.tv_studio)
+        val tvGenre: TextView = findViewById(R.id.tv_genre)
+        val tvAbout: TextView = findViewById(R.id.tv_about_movie)
+        val ratingBar: RatingBar = findViewById(R.id.rating_bar)
+
+        tvTitle.text = movie.title
+        tvAbout.text = movie.overview
+        ratingBar.setVoteAverage(movie.voteAverage)
 
         rvList.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        Glide.with(imageView)
-            .load("https://image.tmdb.org/t/p/w500" + movie.backdropPath)
-            .apply(RequestOptions.centerCropTransform())
-            .into(imageView)
+        imageView.setImageUrl("https://image.tmdb.org/t/p/w500" + movie.backdropPath)
 
         viewModel.getCreditsById(movie.id)
+        viewModel.getMovieDetail(movie.id)
 
         viewModel.credits.observe(this, Observer {
             rvList.adapter = AdapterCastMovie(it)
+        })
+
+        viewModel.genres.observe(this, Observer {
+            tvGenre.text = it
+
+        })
+
+        viewModel.companies.observe(this, Observer {
+            tvStudio.text = it
         })
 
 
