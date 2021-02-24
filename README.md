@@ -13,8 +13,7 @@ This project make use of the API TMDB to help in some scenarios that simulate da
 All layouts were inspired by [UpLabs](https://www.uplabs.com/posts/movies-e0f9c1ea-a644-4666-857b-10933c4089ca)
 credits [Mickael Guillaume](https://www.uplabs.com/guillaumemick)
 
-![](https://github.com/AleBarreto/playground-tmdb/blob/main/home_main.png?raw=true) ![](https://github.com/AleBarreto/playground-tmdb/blob/main/home_search.png?raw=true) 
-
+![](https://raw.githubusercontent.com/AleBarreto/playground-tmdb/main/prints/home_main.png) ![](https://raw.githubusercontent.com/AleBarreto/playground-tmdb/main/prints/home_search.png) ![](https://raw.githubusercontent.com/AleBarreto/playground-tmdb/main/prints/detail.png)
 
 ## Github Actions
 
