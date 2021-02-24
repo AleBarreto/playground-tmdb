@@ -161,10 +161,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/roboto_medium"
+                android:text="@string/detail_release"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_label_genre"
-                tools:text="Release" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_genre" />
+
+            <TextView
+                android:id="@+id/tv_release"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/app_detail_text"
+                app:layout_constraintStart_toEndOf="@+id/guideline"
+                app:layout_constraintTop_toBottomOf="@+id/tv_genre" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"

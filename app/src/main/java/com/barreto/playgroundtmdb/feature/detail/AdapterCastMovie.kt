@@ -20,7 +20,9 @@ class AdapterCastMovie(private val list: List<Cast>) :
 
         fun bindView(cast: Cast) {
             tvCast.text = cast.name
-            ivCast.setImageUrlCircle("https://image.tmdb.org/t/p/w200" + cast.profilePath)
+            if (cast.profilePath != null) {
+                ivCast.setImageUrlCircle("200", cast.profilePath)
+            }
         }
 
     }

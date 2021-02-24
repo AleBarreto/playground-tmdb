@@ -44,7 +44,7 @@ class AdapterHomeMovie(private val list: List<Movie>) :
         fun bindView(movie: Movie) {
             tvTitle.text = movie.title
             ratingBar.setVoteAverage(movie.voteAverage)
-            ivMovie.setImageUrl("https://image.tmdb.org/t/p/w300" + movie.posterPath)
+            ivMovie.setImageUrl("300", movie.posterPath)
             containerMain.setOnClickListener { itemClick(movie) }
         }
     }
