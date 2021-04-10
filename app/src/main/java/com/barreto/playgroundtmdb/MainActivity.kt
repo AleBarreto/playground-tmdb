@@ -13,6 +13,7 @@ import com.barreto.playgroundtmdb.feature.detail.DetailMovieActivity
 import com.barreto.playgroundtmdb.feature.home.AdapterHomeMain
 import com.barreto.playgroundtmdb.feature.home.HomeViewModel
 import com.barreto.playgroundtmdb.model.Movie
+import com.barreto.playgroundtmdb.repository.MovieRepository
 import com.barreto.playgroundtmdb.repository.NetworkDataSource
 import com.barreto.playgroundtmdb.services.WebApiAccess
 
@@ -22,7 +23,8 @@ class MainActivity : AppCompatActivity(), AdapterHomeMain.OnClickMovie {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 val dataSource = NetworkDataSource(WebApiAccess.moviesApi)
-                return HomeViewModel(dataSource) as T
+                val repository = MovieRepository(dataSource)
+                return HomeViewModel(repository) as T
             }
         }
     }

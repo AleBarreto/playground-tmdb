@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.barreto.playgroundtmdb.feature.home.domain.DataSourceHomeMain
 import com.barreto.playgroundtmdb.model.Movie
 import com.barreto.playgroundtmdb.repository.RepositoryContract
-import com.barreto.playgroundtmdb.services.DataResource
+import com.barreto.playgroundtmdb.services.Result
 import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: RepositoryContract) : ViewModel() {
@@ -27,10 +27,10 @@ class HomeViewModel(private val repository: RepositoryContract) : ViewModel() {
 
     private fun prepareData(
         genre: String,
-        response: DataResource<List<Movie>>
+        response: Result<List<Movie>>
     ): DataSourceHomeMain {
         return when (response) {
-            is DataResource.Success -> {
+            is Result.Success -> {
                 if (response.data != null) {
                     DataSourceHomeMain(genre, response.data)
                 } else {

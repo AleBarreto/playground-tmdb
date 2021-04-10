@@ -8,7 +8,6 @@ import com.barreto.playgroundtmdb.model.Cast
 import com.barreto.playgroundtmdb.model.getCompanyFormattedList
 import com.barreto.playgroundtmdb.model.getGenreFormattedList
 import com.barreto.playgroundtmdb.repository.RepositoryContract
-import com.barreto.playgroundtmdb.services.DataResource
 import kotlinx.coroutines.launch
 
 class DetailViewModel(private val repository: RepositoryContract) : ViewModel() {
@@ -23,7 +22,7 @@ class DetailViewModel(private val repository: RepositoryContract) : ViewModel() 
 
     fun getCreditsById(id: Long) = viewModelScope.launch {
         when (val response = repository.getCreditsByMovieId(id)) {
-            is DataResource.Success -> {
+            is com.barreto.playgroundtmdb.services.Result.Success -> {
                 response.data.let {
                     _credits.postValue(it)
                 }
@@ -37,7 +36,7 @@ class DetailViewModel(private val repository: RepositoryContract) : ViewModel() 
 
     fun getMovieDetail(id: Long) = viewModelScope.launch {
         when (val response = repository.getMovieDetail(id)) {
-            is DataResource.Success -> {
+            is com.barreto.playgroundtmdb.services.Result.Success -> {
                 response.data?.let {
                     val genreFormattedList = it.getGenreFormattedList(it.genres)
                     _genres.postValue(genreFormattedList)

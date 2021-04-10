@@ -15,6 +15,7 @@ import com.barreto.playgroundtmdb.R
 import com.barreto.playgroundtmdb.feature.setImageWithCollapsingToolbar
 import com.barreto.playgroundtmdb.feature.setVoteAverage
 import com.barreto.playgroundtmdb.model.Movie
+import com.barreto.playgroundtmdb.repository.MovieRepository
 import com.barreto.playgroundtmdb.repository.NetworkDataSource
 import com.barreto.playgroundtmdb.services.WebApiAccess
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -26,7 +27,8 @@ class DetailMovieActivity : AppCompatActivity() {
         object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 val dataSource = NetworkDataSource(WebApiAccess.moviesApi)
-                return DetailViewModel(dataSource) as T
+                val repository = MovieRepository(dataSource)
+                return DetailViewModel(repository) as T
             }
         }
     }
