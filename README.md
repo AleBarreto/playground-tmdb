@@ -15,6 +15,11 @@ credits [Mickael Guillaume](https://www.uplabs.com/guillaumemick)
 
 ![](https://raw.githubusercontent.com/AleBarreto/playground-tmdb/main/prints/home_main.png) ![](https://raw.githubusercontent.com/AleBarreto/playground-tmdb/main/prints/home_search.png) ![](https://raw.githubusercontent.com/AleBarreto/playground-tmdb/main/prints/detail.png)
 
+## Architecture
+The MVVM (Model-View-ViewModel) pattern helps to completely separate the business and presentation logic from the UI, and the business logic and UI can be clearly separated for easier testing and easier maintenance.
+
+![](https://raw.githubusercontent.com/AleBarreto/playground-tmdb/main/prints/architecture.png)
+
 ## How to build the project
 
 Create a file called "secrets.properties" at the project root and add your api key from TMDB.
