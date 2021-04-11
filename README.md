@@ -55,6 +55,6 @@ More info about [**Encrypted secrets**](https://docs.github.com/en/actions/refer
 * Feature search movie
 * Add paging library
 * Modify CI(GithubActions) to run unit tests
-
+* Add exceptions cases
 
  
