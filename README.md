@@ -23,6 +23,7 @@ The MVVM (Model-View-ViewModel) pattern helps to completely separate the busines
 ## Running tests
 
 The tests will be performed at the repository layer and at the ViewModel layer.
+Check the file [MovieRepositoryTest.kt](https://github.com/AleBarreto/playground-tmdb/blob/main/app/src/test/java/com/barreto/playgroundtmdb/MovieRepositoryTest.kt) 
 
 ## How to build the project
 
