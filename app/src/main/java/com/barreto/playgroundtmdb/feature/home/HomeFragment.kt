@@ -1,10 +1,7 @@
 package com.barreto.playgroundtmdb.feature.home
 
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -34,13 +31,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), AdapterHomeMain.OnClickMo
         super.onViewCreated(view, savedInstanceState)
 
         val rv: RecyclerView = view.findViewById(R.id.rv_home_main)
+        val adapterHomeMain = AdapterHomeMain()
+        adapterHomeMain.setOnClickMovie(this)
+        rv.adapter = adapterHomeMain
 
         viewModel.getAllMovies()
 
         viewModel.listDataHomeMain.observe(viewLifecycleOwner, {
-            val adapterHomeMain = AdapterHomeMain(it)
-            adapterHomeMain.setOnClickMovie(this)
-            rv.adapter = adapterHomeMain
+            adapterHomeMain.submitList(it)
         })
 
 

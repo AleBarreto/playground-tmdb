@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.barreto.playgroundtmdb.R
 import com.barreto.playgroundtmdb.feature.setImageUrl
@@ -14,14 +16,7 @@ import com.barreto.playgroundtmdb.feature.setVoteAverage
 import com.barreto.playgroundtmdb.model.Movie
 
 //https://image.tmdb.org/t/p/w500/
-class AdapterHomeMovie(private val list: List<Movie>) :
-    RecyclerView.Adapter<AdapterHomeMovie.ViewHolder>() {
-
-    private lateinit var itemClick: (Movie) -> Unit
-
-    fun setOnClickMovie(itemClick: (Movie) -> Unit) {
-        this.itemClick = itemClick
-    }
+class AdapterHomeMovie : ListAdapter<Movie, AdapterHomeMovie.ViewHolder>(MovieDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -30,10 +25,11 @@ class AdapterHomeMovie(private val list: List<Movie>) :
         )
     }
 
-    override fun getItemCount() = list.size
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(list[position])
+        val currentItem = getItem(position)
+        if (currentItem != null) {
+            holder.bindView(currentItem)
+        }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -46,6 +42,25 @@ class AdapterHomeMovie(private val list: List<Movie>) :
             ratingBar.setVoteAverage(movie.voteAverage)
             ivMovie.setImageUrl("300", movie.posterPath)
             containerMain.setOnClickListener { itemClick(movie) }
+        }
+    }
+
+    private lateinit var itemClick: (Movie) -> Unit
+
+    fun setOnClickMovie(itemClick: (Movie) -> Unit) {
+        this.itemClick = itemClick
+    }
+
+    companion object {
+        private val MovieDiffCallback = object : DiffUtil.ItemCallback<Movie>() {
+            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                return oldItem == newItem
+            }
+
         }
     }
 
