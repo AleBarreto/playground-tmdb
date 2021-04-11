@@ -9,11 +9,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.barreto.playgroundtmdb.R
-import com.barreto.playgroundtmdb.feature.home.domain.DataSourceHomeMain
 import com.barreto.playgroundtmdb.model.Movie
 
 class AdapterHomeMain :
-    ListAdapter<DataSourceHomeMain, AdapterHomeMain.ViewHolderMain>(HomeDiffCallback) {
+    ListAdapter<WrapperDataMovie, AdapterHomeMain.ViewHolderMain>(HomeDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderMain {
         return ViewHolderMain(
@@ -33,7 +32,7 @@ class AdapterHomeMain :
         private val tvGenre: TextView = itemView.findViewById(R.id.tv_genre)
         private val recyclerView: RecyclerView = itemView.findViewById(R.id.rv_content_movie)
 
-        fun bindView(data: DataSourceHomeMain) {
+        fun bindView(data: WrapperDataMovie) {
             tvGenre.text = data.genre
 
             recyclerView.layoutManager =
@@ -48,17 +47,17 @@ class AdapterHomeMain :
     }
 
     companion object {
-        private val HomeDiffCallback = object : DiffUtil.ItemCallback<DataSourceHomeMain>() {
+        private val HomeDiffCallback = object : DiffUtil.ItemCallback<WrapperDataMovie>() {
             override fun areItemsTheSame(
-                oldItem: DataSourceHomeMain,
-                newItem: DataSourceHomeMain
+                oldItem: WrapperDataMovie,
+                newItem: WrapperDataMovie
             ): Boolean {
                 return oldItem.genre == newItem.genre
             }
 
             override fun areContentsTheSame(
-                oldItem: DataSourceHomeMain,
-                newItem: DataSourceHomeMain
+                oldItem: WrapperDataMovie,
+                newItem: WrapperDataMovie
             ): Boolean {
                 return oldItem == newItem
             }
