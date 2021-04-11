@@ -20,6 +20,10 @@ The MVVM (Model-View-ViewModel) pattern helps to completely separate the busines
 
 ![](https://raw.githubusercontent.com/AleBarreto/playground-tmdb/main/prints/architecture.png)
 
+## Running tests
+
+The tests will be performed at the repository layer and at the ViewModel layer.
+
 ## How to build the project
 
 Create a file called "secrets.properties" at the project root and add your api key from TMDB.
