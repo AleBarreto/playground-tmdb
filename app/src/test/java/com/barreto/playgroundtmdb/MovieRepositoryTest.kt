@@ -13,7 +13,7 @@ import org.junit.Test
 
 
 @ExperimentalCoroutinesApi
-class NetworkDataSourceTest {
+class MovieRepositoryTest {
 
     private val movie1 = Movie(
         false,
