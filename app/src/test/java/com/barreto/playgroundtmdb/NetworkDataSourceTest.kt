@@ -3,6 +3,7 @@ package com.barreto.playgroundtmdb
 import com.barreto.playgroundtmdb.model.Movie
 import com.barreto.playgroundtmdb.repository.MovieRepository
 import com.barreto.playgroundtmdb.services.Result
+import junit.framework.Assert.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.MatcherAssert.assertThat
@@ -50,6 +51,17 @@ class NetworkDataSourceTest {
 
         // Then tasks are loaded from the remote data source
         assertThat(popularMovies.data, IsEqual(remotePopularMovies))
+    }
+
+    @Test
+    fun getPopularMovie_requestAllPopularMovieWhenHasError() = runBlockingTest {
+        //Create movieRepository with empty networkDataSource
+        movieRepository = MovieRepository(FakeNetworkDataSource())
+
+        val popularMovies = movieRepository.getPopularMovies() as Result.Error
+
+        assertEquals("Empty List", popularMovies.message)
+        assertThat(popularMovies.data, IsEqual(emptyList()))
     }
 
 

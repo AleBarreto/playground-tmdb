@@ -1,12 +1,16 @@
 package com.barreto.playgroundtmdb.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CreditsResult(
     val id: Long,
     val cast: List<Cast>
-)
+) : Parcelable
 
+@Parcelize
 data class Cast(
     val adult: Boolean,
     val gender: Long,
@@ -25,4 +29,4 @@ data class Cast(
     @SerializedName("credit_id")
     val creditId: String,
     val order: Long
-)
+) : Parcelable

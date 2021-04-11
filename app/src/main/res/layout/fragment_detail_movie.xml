@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_second"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".feature.detail.DetailMovieFragment">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -38,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_arrow_back_24"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -106,8 +108,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_about_movie" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_about_movie"
+                tools:listitem="@layout/list_item_detail_cast" />
 
             <TextView
                 android:id="@+id/tv_label_studio"

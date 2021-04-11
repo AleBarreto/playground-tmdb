@@ -62,7 +62,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingStart="30dp"
-            tools:ignore="RtlSymmetry" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:ignore="RtlSymmetry"
+            tools:listitem="@layout/list_item_home" />
     </FrameLayout>
 
 

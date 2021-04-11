@@ -1,8 +1,10 @@
 package com.barreto.playgroundtmdb.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class MovieResult(
     val page: Long,
     val results: List<Movie>,
@@ -12,8 +14,9 @@ data class MovieResult(
 
     @SerializedName(value = "total_results")
     val totalResults: Long
-)
+) : Parcelable
 
+@Parcelize
 data class Movie(
     val adult: Boolean,
 
@@ -48,4 +51,4 @@ data class Movie(
 
     @SerializedName(value = "vote_count")
     val voteCount: Long
-) : Serializable
+) : Parcelable
