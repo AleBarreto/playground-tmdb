@@ -43,8 +43,9 @@ obs: an important step is the key decryption (TMDB API) in the [secrets.properti
 More info about [**Encrypted secrets**](https://docs.github.com/en/actions/reference/encrypted-secrets)
 
 ## TODO 
+* Add room to local database
 * Add DataBinding
-* Add mmore tests
+* Add more tests
 * Add any(Hilt or Koin) library from Dependency Injection
 * Feature search movie
 * Add paging library
