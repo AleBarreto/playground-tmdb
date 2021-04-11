@@ -46,7 +46,8 @@
             android:padding="8dp"
             android:singleLine="true"
             android:textColor="#d1e4f3"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_scrollFlags="scroll|enterAlways" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -61,8 +62,8 @@
             android:id="@+id/rv_home_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingStart="30dp"
             android:clipToPadding="false"
+            android:paddingStart="30dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:ignore="RtlSymmetry"
             tools:listitem="@layout/list_item_home" />
